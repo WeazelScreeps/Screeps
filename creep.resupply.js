@@ -37,7 +37,7 @@ var creepResupply = {
         for(var name in Memory.creeps) {
             if(!Game.creeps[name]) {
                 delete Memory.creeps[name];
-                console.log('Clearing dead ' + Memory.creeps[name].role + ': ', name);
+                console.log('Clearing dead creep: ', name);
             }
         }  
     },
