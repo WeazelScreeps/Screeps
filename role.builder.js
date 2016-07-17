@@ -75,6 +75,11 @@ var roleBuilder = {
                 creep.moveTo(location.point);
             }    
 	    }
+	    else if (location.type == 'repariable') {
+	    	if(creep.repair(location.point) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(location.point);
+            }
+	    }
 	    else {
 	        creep.moveTo(location.point);
 	    }
@@ -84,10 +89,15 @@ var roleBuilder = {
 	_determineBuildLocation: function(creep) {
 	    var buildLocation = {};
 	    var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+	    var repairables = ._filter(creep.room.find(FIND_MY_STRUCTURES), (structure) => structure.hits < structure.maxHits);
         
         if(targets.length > 0) {
             buildLocation.type = 'site';
             buildLocation.point = targets[0];
+        }
+        else if (repairables.length > 0) {
+        	buildLocation.type = 'repariable';
+        	buildLocation.point = repairables[0];
         }
         else {
             buildLocation.type = 'rally';
