@@ -31,6 +31,7 @@ var roleBuilder = {
 	    		HiveMind.updateState(creep, 'gathering');
 	    	} else {
     			creep.memory.gathering = false;
+    			HiveMind.updateState(creep, 'building');
     		}
 
     	} else {
