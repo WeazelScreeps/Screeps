@@ -75,7 +75,7 @@ var roleBuilder = {
                 creep.moveTo(location.point);
             }    
 	    }
-	    else if (location.type == 'repariable') {
+	    else if (location.type == 'repairable') {
 	    	if(creep.repair(location.point) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(location.point);
             }
@@ -98,8 +98,8 @@ var roleBuilder = {
             buildLocation.type = 'site';
             buildLocation.point = targets[0];
         }
-        else if (repairables.length > 0) {
-        	buildLocation.type = 'repariable';
+        else if (repairables) {
+        	buildLocation.type = 'repairable';
         	buildLocation.point = repairables;
         }
         else {
