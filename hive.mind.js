@@ -97,7 +97,7 @@ var hiveMind = {
         	return targets[0];
         }
         return false;
-	}
+	},
 
 	// Setters
 
@@ -124,7 +124,7 @@ var hiveMind = {
                 break;
         }
         return source;
-	},
+	}
 }
 
 module.exports = hiveMind;
