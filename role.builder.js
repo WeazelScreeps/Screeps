@@ -44,10 +44,10 @@ var roleBuilder = {
 	    creep.memory.gathering = true;
 	    creep.memory.building = false;
         
-        var source = this._determineGatheringNode(creep);
-        if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(source);
-        }
+		var source = this._determineGatheringNode(creep);
+		if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+		    creep.moveTo(source);
+		}
 	},
 	
 	_determineGatheringNode: function(creep) {
