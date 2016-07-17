@@ -1,5 +1,5 @@
 var maxEnergy = 400;
-var defaultProps = [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
+var defaultProps = [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE];
 
 var creepResupply = {
     
