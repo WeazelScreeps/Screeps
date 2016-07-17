@@ -18,7 +18,7 @@ var roleBuilder = {
       		  this._repair(creep, creep.memory.target);
       		  break;
   		  case 'idle':
-  		  	  creep.moveTo(creep.memory.target);	
+  		  	  this._upgradeController(creep);	
 	  }
 	  
 	},
@@ -138,6 +138,14 @@ var roleBuilder = {
         });
 
         return repairable;
+	},
+
+	_upgradeController: function(creep) {
+	    creep.memory.upgrading = true;
+	    creep.memory.gathering = false;
+	    if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(creep.room.controller);
+        }
 	}
 };
 
