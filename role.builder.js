@@ -90,7 +90,7 @@ var roleBuilder = {
             buildLocation.point = targets[0];
         }
         else {
-            deliveryLocation.type = 'rally';
+            buildLocation.type = 'rally';
             switch(creep.memory.group){
                 case '1': 
                     buildLocation.point = Game.flags.Rally1;
