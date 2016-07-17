@@ -100,7 +100,7 @@ var roleBuilder = {
         }
         else if (repairables.length > 0) {
         	buildLocation.type = 'repariable';
-        	buildLocation.point = repairables[0];
+        	buildLocation.point = repairables;
         }
         else {
             buildLocation.type = 'rally';
