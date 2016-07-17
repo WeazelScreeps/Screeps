@@ -26,7 +26,7 @@ var roleHarvester = {
 		var target;
 	    if (creep.memory.gathering){
 	    	if (creep.carry.energy < creep.carryCapacity) {
-	    		this._updateState(creep, 'gathering');
+	    		HiveMind.updateState(creep, 'gathering');
 	    	} else {
     			creep.memory.gathering = false;
     		}
