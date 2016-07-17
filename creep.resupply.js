@@ -117,7 +117,7 @@ var creepResupply = {
         var defaultProps = [WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
         var desiredUnits = {
             groupOne: 2,
-            groupTwo: 3
+            groupTwo: 4
         };
         var groupOneFilled = false;
         var groupTwoFilled = false;
