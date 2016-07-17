@@ -75,7 +75,13 @@ var roleHarvester = {
             }    
 	    }
 	    else {
-	        creep.moveTo(location.point);
+	    	if (creep.carry.energy < creep.carryCapacity){
+	    		creep.memory.gathering = true;
+	    		creep.delivering = false;
+	    	}
+	    	else {
+	    		creep.moveTo(location.point);
+	    	}
 	    }
 	    
 	},
