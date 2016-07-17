@@ -90,7 +90,7 @@ var roleBuilder = {
 	    var buildLocation = {};
 	    var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 	    var repairables = _.filter(creep.room.find(FIND_MY_STRUCTURES), (structure) => structure.hits < structure.maxHits);
-	    console.log(repairables);
+	    
         
         if(targets.length > 0) {
             buildLocation.type = 'site';
