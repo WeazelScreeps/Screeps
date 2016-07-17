@@ -80,7 +80,7 @@ var roleHarvester = {
 	    		creep.delivering = false;
 	    	}
 	    	else {
-	    		creep.moveTo(location.point);
+	    		this._upgradeController(creep);
 	    	}
 	    }
 	    
@@ -111,6 +111,14 @@ var roleHarvester = {
             }
         }
         return deliveryLocation;
+	},
+
+	_upgradeController: function(creep) {
+	    creep.memory.upgrading = true;
+	    creep.memory.gathering = false;
+	    if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(creep.room.controller);
+        }
 	}
 };
 
