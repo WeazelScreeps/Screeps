@@ -43,7 +43,7 @@ var hiveMind = {
 	    creep.memory.gathering = false;
 	    creep.memory.idle = false;
 	    
-        if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        if(creep.transfer(Game.getObjectById(target), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target);
         }    
 	},

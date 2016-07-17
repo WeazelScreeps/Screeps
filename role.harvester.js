@@ -43,7 +43,7 @@ var roleHarvester = {
     		} else {
     			creep.memory.idle = true;
     			HiveMind.updateState(creep, 'idle');
-				HiveMind.setTarget(creep, this._determineRallyPoint);
+				HiveMind.setTarget(creep, HiveMind.determineRallyPoint(creep));
     		}
     	}
 	}
