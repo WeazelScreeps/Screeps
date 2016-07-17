@@ -12,37 +12,61 @@ var roleBuilder = {
 	          this._gatherEnergy(creep);
 	          break;
           case 'building':
-              this._build(creep);
+              this._build(creep, creep.memory.target);
               break;
+          case 'repairing':
+      		  this._repair(creep, creep.memory.target);
+      		  break;
+  		  case 'idle':
+  		  	  creep.moveTo(creep.memory.target);	
 	  }
 	  
 	},
 	
 	_determineState: function(creep) {
-	    if (creep.memory.gathering && creep.carry.energy < creep.carryCapacity){
-	        this._updateState(creep, 'gathering');
-	    }
-	    else if (creep.memory.gathering && creep.carry.energy >= creep.carryCapacity){
-	        this._updateState(creep, 'building');
-	    }
-	    else if (creep.memory.building && creep.carry.energy > 0){
-	        this._updateState(creep, 'building');
-	    }
-	    else if (creep.memory.building && creep.carry.energy < 1){
-	        this._updateState(creep, 'gathering');
-	    }
-	    else {
-	        this._updateState(creep, 'gathering');
-	    }
+		var target;
+	    if (creep.memory.gathering){
+	    	if (creep.carry.energy < creep.carryCapacity) {
+	    		this._updateState(creep, 'gathering');
+	    	} else {
+    			creep.memory.gathering = false;
+    		}
+
+    	} else {
+    		if (target = this._canBuild(creep)) {
+    			if (creep.carry.energy > 0) {
+    				this._updateState(creep, 'building');
+    				this._setTarget(creep, target);
+				} else {
+					this._updateState(creep, 'gathering');
+				}
+			} else if (target = this._canRepair(creep)) {
+				if (creep.carry.energy > 0) {
+					this._updateState(creep, 'repairing');
+					this._setTarget(creep, target);
+				} else {
+					this._updateState(creep, 'gathering');
+				}
+			} else{
+				this._updateState(creep, 'idle');
+				this._setTarget(creep, this._determineRallyPoint);
+			}
+		}
 	},
 	
 	_updateState: function(creep, state){
 	    creep.memory.state = state;
 	},
-	
+
+	_setTarget: function(creep, target){
+		creep.memory.target = target;
+	},	
+
 	_gatherEnergy: function(creep) {
 	    creep.memory.gathering = true;
 	    creep.memory.building = false;
+	    creep.memory.repairing = false;
+	    creep.memory.idle = false;
         
 		var source = this._determineGatheringNode(creep);
 		if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
@@ -65,55 +89,55 @@ var roleBuilder = {
         return source;
 	},
 	
-	_build: function(creep) {
+	_build: function(creep, target) {
 	    creep.memory.building = true;
+	    creep.memory.repairing = false;
 	    creep.memory.gathering = false;
+	    creep.memory.idle = false;
 	    
-	    var location = this._determineBuildLocation(creep);
-	    if (location.type == 'site'){
-	        if(creep.build(location.point) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(location.point);
-            }    
-	    }
-	    else if (location.type == 'repairable') {
-	    	if(creep.repair(location.point) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(location.point);
-            }
-	    }
-	    else {
-	        creep.moveTo(location.point);
-	    }
+
+        if(creep.build(target) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target);
+        }    
 	    
 	},
-	
-	_determineBuildLocation: function(creep) {
-	    var buildLocation = {};
-	    var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-	    var repairables = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+
+	_repair: function (creep, target) {
+		creep.memory.repairing = true;
+		creep.memory.building = false;
+		creep.memory.gathering = false;
+		creep.memory.idle = false;
+
+		if(creep.repair(target) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target);
+        }
+	},
+
+	_determineRallyPoint: function (creep) {
+		switch(creep.memory.group){
+                case '1': 
+                    return Game.flags.Rally1;
+                    break;
+                case '2':
+                    return Game.flags.Rally2;
+                    break;
+            }
+	},
+
+	_canBuild: function (creep) {
+		var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+		if (targets.length > 0){
+			return targets[0];
+		}
+		return false;
+	},
+
+	_canRepair: function (creep) {
+		var repairable = creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
         });
 
-        
-        if(targets.length > 0) {
-            buildLocation.type = 'site';
-            buildLocation.point = targets[0];
-        }
-        else if (repairables) {
-        	buildLocation.type = 'repairable';
-        	buildLocation.point = repairables;
-        }
-        else {
-            buildLocation.type = 'rally';
-            switch(creep.memory.group){
-                case '1': 
-                    buildLocation.point = Game.flags.Rally1;
-                    break;
-                case '2':
-                    buildLocation.point = Game.flags.Rally2;
-                    break;
-            }
-        }
-        return buildLocation;
+        return repairable;
 	}
 };
 
