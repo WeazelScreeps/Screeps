@@ -1,3 +1,6 @@
+var maxEnergy = 400;
+var defaultProps = [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
+
 var creepResupply = {
     
     status: {
@@ -41,7 +44,6 @@ var creepResupply = {
     
     _manageHarvesterLevels: function() {
         
-        var defaultProps = [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
         var desiredUnits = {
             groupOne: 3,
             groupTwo: 3
@@ -78,7 +80,6 @@ var creepResupply = {
     
     _manageUpgraderLevels: function() {
 
-        var defaultProps = [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
         var desiredUnits = {
             groupOne: 2,
             groupTwo: 3
@@ -114,7 +115,6 @@ var creepResupply = {
     
     _manageBuilderLevels: function() {
         
-        var defaultProps = [WORK, WORK, CARRY, CARRY, MOVE, MOVE];
         var desiredUnits = {
             groupOne: 2,
             groupTwo: 4
@@ -149,7 +149,7 @@ var creepResupply = {
     },
     
     _spawnCreep: function(props, options) {
-        if (this.currentEnergy < 400){
+        if (this.currentEnergy < maxEnergy){
             return false;
         }
         var newName = Game.spawns.Spawn1.createCreep(props, undefined, options);
