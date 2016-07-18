@@ -82,7 +82,7 @@ var hiveMind = {
 	    creep.memory.upgrading = false;
 	    creep.memory.delivering = false;
 	    creep.memory.idle = false;
-		if(creep.pickup(Game.getObjectById(target.id) == ERR_NOT_IN_RANGE) {
+		if(creep.pickup(Game.getObjectById(target.id)) == ERR_NOT_IN_RANGE) {
             creep.moveTo(Game.getObjectById(target.id));
         } 
 	},
