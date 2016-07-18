@@ -56,7 +56,7 @@ var creepResupply = {
         var groupTwo = _.filter(current, (creep) => creep.memory.group == '2');
         
         if (groupOne.length < desiredUnits.groupOne){
-            this._spawnCreep(defaultProps, {role: 'harvester', group: '1'});
+            this._spawnCreep(defaultProps, {role: 'harvester', group: '1', state: 'gathering'});
         }
         else {
             groupOneFilled = true;
@@ -64,7 +64,7 @@ var creepResupply = {
         
         if (groupOneFilled){
             if (groupTwo.length < desiredUnits.groupTwo){
-                this._spawnCreep(defaultProps, {role: 'harvester', group: '2'});
+                this._spawnCreep(defaultProps, {role: 'harvester', group: '2', state: 'gathering'});
             }
             else {
                 groupTwoFilled = true;
@@ -92,7 +92,7 @@ var creepResupply = {
         var groupTwo = _.filter(current, (creep) => creep.memory.group == '2');
         
         if (groupOne.length < desiredUnits.groupOne){
-            this._spawnCreep(defaultProps, {role: 'upgrader', group: '1'});
+            this._spawnCreep(defaultProps, {role: 'upgrader', group: '1', state: 'gathering'});
         }
         else {
             groupOneFilled = true;
@@ -100,7 +100,7 @@ var creepResupply = {
 
         if (groupOneFilled){
             if (groupTwo.length < desiredUnits.groupTwo){
-                this._spawnCreep(defaultProps, {role: 'upgrader', group: '2'});
+                this._spawnCreep(defaultProps, {role: 'upgrader', group: '2', state: 'gathering'});
             }
             else {
                 groupTwoFilled = true;
@@ -127,7 +127,7 @@ var creepResupply = {
         var groupTwo = _.filter(current, (creep) => creep.memory.group == '2');
         
         if (groupOne.length < desiredUnits.groupOne){
-            this._spawnCreep(defaultProps, {role: 'builder', group: '1'});
+            this._spawnCreep(defaultProps, {role: 'builder', group: '1', state: 'gathering'});
         }
         else {
             groupOneFilled = true;
@@ -135,7 +135,7 @@ var creepResupply = {
 
         if (groupOneFilled){
             if (groupTwo.length < desiredUnits.groupTwo){
-                this._spawnCreep(defaultProps, {role: 'builder', group: '2'});
+                this._spawnCreep(defaultProps, {role: 'builder', group: '2', state: 'gathering'});
             }
             else {
                 groupTwoFilled = true;
