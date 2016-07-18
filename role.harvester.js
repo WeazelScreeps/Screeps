@@ -35,11 +35,16 @@ var roleHarvester = {
 	    			HiveMind.updateState(creep, 'gathering');
 	    		}
 	    	} else {
-    			creep.memory.gathering = false;
     			if (target = HiveMind.canDeliver(creep)){
-    				HiveMind.updateState(creep, 'delivering');
-    				HiveMind.setTarget(creep, target);
-    			}
+    				if (creep.carry.energy > 0) {
+	    				HiveMind.updateState(creep, 'delivering');
+	    				HiveMind.setTarget(creep, target);
+					} else {
+						HiveMind.updateState(creep, 'gathering');
+					}
+    			} else {
+	    			HiveMind.updateState(creep, 'idle');
+	    		}
     		}
     	} else if (creep.memory.scavenging){
     		if (target = HiveMind.canScavenge(creep)) {
@@ -52,6 +57,17 @@ var roleHarvester = {
 			} else {
 				HiveMind.updateState(creep, 'delivering');
 			}
+    	} else if (creep.memory.delivering) {
+    		if (target = HiveMind.canDeliver(creep)){
+				if (creep.carry.energy > 0) {
+    				HiveMind.updateState(creep, 'delivering');
+    				HiveMind.setTarget(creep, target);
+				} else {
+					HiveMind.updateState(creep, 'gathering');
+				}
+			} else {
+    			HiveMind.updateState(creep, 'idle');
+    		}
     	} else {
     		if (target = HiveMind.canDeliver(creep)){
     			if (creep.carry.energy > 0) {
@@ -61,7 +77,6 @@ var roleHarvester = {
 					HiveMind.updateState(creep, 'gathering');
 				}
 			} else {
-    			creep.memory.idle = true;
     			HiveMind.updateState(creep, 'idle');
 				HiveMind.setTarget(creep, HiveMind.determineRallyPoint(creep));
     		}
