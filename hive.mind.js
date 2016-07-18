@@ -113,6 +113,10 @@ var hiveMind = {
 
 	_determineGatheringNode: function(creep) {
         var sources = creep.room.find(FIND_SOURCES);
+		var droppedEnergy = creep.pos.findInRange(
+			FIND_DROPPED_ENERGY,
+			1
+		);
         var source;
         
         switch(creep.memory.group){
@@ -120,7 +124,11 @@ var hiveMind = {
                 source = sources[0];
                 break;
             case '2':
-                source = sources[sources.length - 1];
+            	if (droppedEnergy){
+            		source = droppedEnergy;
+            	} else {
+            		source = sources[sources.length - 1];
+            	}
                 break;
         }
         return source;
