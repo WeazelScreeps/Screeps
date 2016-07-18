@@ -11,6 +11,9 @@ var roleUpgrader = {
 	      case 'gathering':
 	          HiveMind.gatherEnergy(creep);
 	          break;
+	      case 'scavenging':	
+          	  HiveMind.scavenge(creep, creep.memory.target);
+          	  break;
           case 'upgrading':
               HiveMind.upgradeController(creep);
               break;
