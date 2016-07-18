@@ -36,26 +36,34 @@ var roleBuilder = {
 	    			HiveMind.setTarget(creep, target);
 	    		}
     		}
-
-    	} else {
+    	} else if (creep.memory.building) {
     		if (target = HiveMind.canBuild(creep)) {
     			if (creep.carry.energy > 0) {
     				HiveMind.updateState(creep, 'building');
     				HiveMind.setTarget(creep, target);
-				} else {
-					HiveMind.updateState(creep, 'gathering');
+    			} else {
+    				HiveMind.updateState(creep, 'gathering');
+    			}
+			} else {
+				if (target = HiveMind.canRepair(creep)) {
+					HiveMind.updateState(creep, 'repairing');
+					HiveMind.setTarget(creep, target);
 				}
-			} else if (target = HiveMind.canRepair(creep)) {
+			}
+		} else if (creep.memory.repairing) {
+			if (target = HiveMind.canRepair(creep)) {
 				if (creep.carry.energy > 0) {
 					HiveMind.updateState(creep, 'repairing');
 					HiveMind.setTarget(creep, target);
 				} else {
 					HiveMind.updateState(creep, 'gathering');
 				}
-			} else{
+			} else {
 				HiveMind.updateState(creep, 'idle');
-				HiveMind.setTarget(creep, HiveMind.determineRallyPoint);
 			}
+		} else 
+			HiveMind.updateState(creep, 'idle');
+			HiveMind.setTarget(creep, HiveMind.determineRallyPoint);
 		}
 	}
 };
