@@ -5,7 +5,10 @@ var hiveMind = {
 	build: function(creep, target) {
 	    creep.memory.building = true;
 	    creep.memory.repairing = false;
+	    creep.memory.upgrading = false;
 	    creep.memory.gathering = false;
+	    creep.memory.scavenging = false;
+	    creep.memory.delivering = false;
 	    creep.memory.idle = false;
 	    
 
@@ -17,8 +20,11 @@ var hiveMind = {
 
 	repair: function (creep, target) {
 		creep.memory.repairing = true;
+		creep.memory.upgrading = false;
 		creep.memory.building = false;
 		creep.memory.gathering = false;
+		creep.memory.scavenging = false;
+		creep.memory.delivering = false;
 		creep.memory.idle = false;
 
 		if(creep.repair(target) == ERR_NOT_IN_RANGE) {
@@ -28,8 +34,11 @@ var hiveMind = {
 
 	gatherEnergy: function(creep) {
 	    creep.memory.gathering = true;
+	    creep.memory.scavenging = false;
 	    creep.memory.building = false;
 	    creep.memory.repairing = false;
+	    creep.memory.upgrading = false;
+	    creep.memory.delivering = false;
 	    creep.memory.idle = false;
         
 		var source = this._determineGatheringNode(creep);
@@ -41,6 +50,10 @@ var hiveMind = {
 	deliverEnergy: function(creep, target) {
 	    creep.memory.delivering = true;
 	    creep.memory.gathering = false;
+	    creep.memory.scavenging = false;
+	    creep.memory.building = false;
+	    creep.memory.repairing = false;
+	    creep.memory.upgrading = false;
 	    creep.memory.idle = false;
 	    
         if(creep.transfer(Game.getObjectById(target.id), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -50,10 +63,29 @@ var hiveMind = {
 
 	upgradeController: function(creep) {
 	    creep.memory.upgrading = true;
-	    creep.memory.gathering = false;
+	    creep.memory.delivering = false;
+	    creep.memory.gathering = true;
+	    creep.memory.scavenging = false;
+	    creep.memory.building = false;
+	    creep.memory.repairing = false;
+	    creep.memory.idle = false;
 	    if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
             creep.moveTo(creep.room.controller);
         }
+	},
+
+	scavenge: function(creep, target) {
+		creep.memory.scavenging = true;
+		creep.memory.gathering = false;
+	    creep.memory.building = false;
+	    creep.memory.repairing = false;
+	    creep.memory.upgrading = false;
+	    creep.memory.delivering = false;
+	    creep.memory.idle = false;
+		var energy = creep.pos.findInRange(
+			FIND_DROPPED_ENERGY,
+			1
+		);
 	},
 
 	// Decisions
@@ -98,6 +130,19 @@ var hiveMind = {
         }
         return false;
 	},
+
+	canScavenge: function(creep) {
+		var energy = creep.pos.findInRange(
+			FIND_DROPPED_ENERGY,
+			1
+		);
+
+		if (energy.length){
+			return energy[0];
+		}
+		return false;
+	},
+
 
 	// Setters
 

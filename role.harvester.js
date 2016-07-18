@@ -9,13 +9,15 @@ var roleHarvester = {
 	  this._determineState(creep);
 	  switch(creep.memory.state){
 	      case 'gathering':
-	         HiveMind.gatherEnergy(creep);
+	          HiveMind.gatherEnergy(creep);
 	          break;
           case 'delivering':
-             HiveMind.deliverEnergy(creep, creep.memory.target);
+              HiveMind.deliverEnergy(creep, creep.memory.target);
               break;
+          case 'scavenging':
+          	  HiveMind.scavenge(creep, creep.memory.target);
       	  case 'idle':
-      	  	 HiveMind.upgradeController(creep);
+      	  	  HiveMind.upgradeController(creep);
       	  	  break;
 
 	  }
@@ -39,6 +41,13 @@ var roleHarvester = {
     				HiveMind.setTarget(creep, target);
 				} else {
 					HiveMind.updateState(creep, 'gathering');
+				}
+			else if (target = HiveMind.canScavenge(creep)) {
+				if (creep.carry.energy < creep.carryCapacity) {
+					HiveMind.updateState(creep, 'scavenging');
+					HiveMind.setTarget(creep, target);
+				} else {
+					HiveMind.updateState(creep, 'idle');
 				}
     		} else {
     			creep.memory.idle = true;
