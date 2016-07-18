@@ -64,7 +64,7 @@ var hiveMind = {
 	upgradeController: function(creep) {
 	    creep.memory.upgrading = true;
 	    creep.memory.delivering = false;
-	    creep.memory.gathering = true;
+	    creep.memory.gathering = false;
 	    creep.memory.scavenging = false;
 	    creep.memory.building = false;
 	    creep.memory.repairing = false;
