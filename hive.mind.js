@@ -120,7 +120,7 @@ var hiveMind = {
                 source = sources[0];
                 break;
             case '2':
-                source = sources[1];
+                source = sources[sources.length - 1];
                 break;
         }
         return source;
