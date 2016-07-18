@@ -61,7 +61,7 @@ var roleBuilder = {
 			} else {
 				HiveMind.updateState(creep, 'idle');
 			}
-		} else 
+		} else {
 			HiveMind.updateState(creep, 'idle');
 			HiveMind.setTarget(creep, HiveMind.determineRallyPoint);
 		}
