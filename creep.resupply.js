@@ -37,7 +37,7 @@ var creepResupply = {
         for(var name in Memory.creeps) {
             if(!Game.creeps[name]) {
                 delete Memory.creeps[name];
-                console.log('Clearing dead creep: ', name);
+                //console.log('Clearing dead creep: ', name);
             }
         }  
     },
@@ -153,7 +153,7 @@ var creepResupply = {
             return false;
         }
         var newName = Game.spawns.Spawn1.createCreep(props, undefined, options);
-        console.log('Spawning new ' + options.role +': ' + newName);
+        //console.log('Spawning new ' + options.role +': ' + newName);
     }
     
 }
