@@ -12,8 +12,8 @@ var hiveMind = {
 	    creep.memory.idle = false;
 	    
 
-        if(creep.build(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target);
+        if(creep.build(Game.getObjectById(target.id)) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(Game.getObjectById(target.id));
         }    
 	    
 	},
@@ -27,8 +27,8 @@ var hiveMind = {
 		creep.memory.delivering = false;
 		creep.memory.idle = false;
 
-		if(creep.repair(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target);
+		if(creep.repair(Game.getObjectById(target.id)) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(Game.getObjectById(target.id));
         }
 	},
 

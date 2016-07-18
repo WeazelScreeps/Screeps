@@ -42,7 +42,7 @@ var roleHarvester = {
 				} else {
 					HiveMind.updateState(creep, 'gathering');
 				}
-			else if (target = HiveMind.canScavenge(creep)) {
+			} else if (target = HiveMind.canScavenge(creep)) {
 				if (creep.carry.energy < creep.carryCapacity) {
 					HiveMind.updateState(creep, 'scavenging');
 					HiveMind.setTarget(creep, target);
