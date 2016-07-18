@@ -3,12 +3,10 @@ var towerHandler = {
 	run: function() {
 
 		var towers = [
-			'578c3de0e949c1f60f168221'
+			Game.getObjectById('578c3de0e949c1f60f168221');
 		];
 
-		for(var item in towers){
-			var tower = Game.getObjectById(item);
-			
+		for(var tower in towers){
 			var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 	        if(closestHostile) {
 	            tower.attack(closestHostile);

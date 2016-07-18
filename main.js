@@ -11,6 +11,6 @@ module.exports.loop = function () {
 
     creepResupply.manage(roomEnergy.getCurrent());
 
-    //towerHandler.run();
+    towerHandler.run();
     
 }
