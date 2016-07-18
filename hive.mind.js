@@ -132,8 +132,8 @@ var hiveMind = {
 
 	canScavenge: function(creep) {
 		var energy = creep.pos.findInRange(
-			FIND_DROPPED_ENERGY,
-			1
+			FIND_DROPPED_RESOURCES,
+			50
 		);
 
 		if (energy.length){
