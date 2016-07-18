@@ -72,8 +72,12 @@ var roleBuilder = {
 				HiveMind.updateState(creep, 'idle');
 			}
 		} else {
-			HiveMind.updateState(creep, 'idle');
-			HiveMind.setTarget(creep, HiveMind.determineRallyPoint);
+			if (creep.carry.energy < creep.carryCapacity) {
+	    		HiveMind.updateState(creep, 'gathering');
+	    	} else {
+				HiveMind.updateState(creep, 'idle');
+				HiveMind.setTarget(creep, HiveMind.determineRallyPoint);
+			}
 		}
 	}
 };
