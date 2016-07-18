@@ -38,13 +38,17 @@ var roleUpgrader = {
     				HiveMind.setTarget(creep, target);
     			}
     		}
-    	} else if (target = HiveMind.canScavenge(creep)) {
+    	} else if (creep.memory.scavenging) {
+    		if (target = HiveMind.canScavenge(creep)) {
 				if (creep.carry.energy < creep.carryCapacity) {
 					HiveMind.updateState(creep, 'scavenging');
 					HiveMind.setTarget(creep, target);
 				} else {
 					HiveMind.updateState(creep, 'upgrading');
 				}
+			} else {
+				HiveMind.updateState(creep, 'upgrading');
+			}
     	} else {
 			if (creep.carry.energy > 0) {
 				HiveMind.updateState(creep, 'upgrading');
