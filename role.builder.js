@@ -35,6 +35,14 @@ var roleBuilder = {
 	    			HiveMind.updateState(creep, 'building');
 	    			HiveMind.setTarget(creep, target);
 	    		}
+	    		else {
+	    			if (target = HiveMind.canRepair(creep)) {
+						HiveMind.updateState(creep, 'repairing');
+						HiveMind.setTarget(creep, target);
+					} else {
+						HiveMind.updateState(creep, 'idle');
+					}
+	    		}
     		}
     	} else if (creep.memory.building) {
     		if (target = HiveMind.canBuild(creep)) {
@@ -48,6 +56,8 @@ var roleBuilder = {
 				if (target = HiveMind.canRepair(creep)) {
 					HiveMind.updateState(creep, 'repairing');
 					HiveMind.setTarget(creep, target);
+				} else {
+					HiveMind.updateState(creep, 'idle');
 				}
 			}
 		} else if (creep.memory.repairing) {
