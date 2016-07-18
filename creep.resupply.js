@@ -81,8 +81,8 @@ var creepResupply = {
     _manageUpgraderLevels: function() {
 
         var desiredUnits = {
-            groupOne: 2,
-            groupTwo: 3
+            groupOne: 1,
+            groupTwo: 2
         };
         var groupOneFilled = false;
         var groupTwoFilled = false;
@@ -116,7 +116,7 @@ var creepResupply = {
     _manageBuilderLevels: function() {
         
         var desiredUnits = {
-            groupOne: 2,
+            groupOne: 3,
             groupTwo: 4
         };
         var groupOneFilled = false;
