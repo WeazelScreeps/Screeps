@@ -19,21 +19,21 @@ var roleUpgrader = {
 	},
 	
 	_determineState: function(creep) {
-	    if (creep.memory.gathering && creep.carry.energy < creep.carryCapacity){
-	        HiveMind.updateState(creep, 'gathering');
-	    }
-	    else if (creep.memory.gathering && creep.carry.energy >= creep.carryCapacity){
-	        HiveMind.updateState(creep, 'upgrading');
-	    }
-	    else if (creep.memory.upgrading && creep.carry.energy > 0){
-	        HiveMind.updateState(creep, 'upgrading');
-	    }
-	    else if (creep.memory.upgrading && creep.carry.energy < 1){
-	        HiveMind.updateState(creep, 'gathering');
-	    }
-	    else {
-	        HiveMind.updateState(creep, 'gathering');
-	    }
+
+		if (creep.memory.gathering){
+	    	if (creep.carry.energy < creep.carryCapacity) {
+	    		HiveMind.updateState(creep, 'gathering');
+	    	} else {
+    			HiveMind.updateState(creep, 'upgrading');
+    		}
+
+    	} else {
+			if (creep.carry.energy > 0) {
+				HiveMind.updateState(creep, 'upgrading');
+			} else {
+				HiveMind.updateState(creep, 'gathering');
+			}
+		}
 	}
 };
 
