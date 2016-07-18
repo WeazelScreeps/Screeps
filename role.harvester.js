@@ -77,7 +77,7 @@ var roleHarvester = {
 					HiveMind.updateState(creep, 'gathering');
 				}
 			} else {
-    			if (creep.carry.energy < creep.carryCapacity) {
+    			if (creep.carry.energy == 0) {
 	    		HiveMind.updateState(creep, 'gathering');
 		    	} else {
 					HiveMind.updateState(creep, 'idle');
