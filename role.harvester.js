@@ -43,21 +43,21 @@ var roleHarvester = {
     		}
 
     	} else {
-    		if (target = HiveMind.canDeliver(creep)){
+    		if (target = HiveMind.canScavenge(creep)) {
+				if (creep.carry.energy < creep.carryCapacity) {
+					HiveMind.updateState(creep, 'scavenging');
+					HiveMind.setTarget(creep, target);
+				} else {
+					HiveMind.updateState(creep, 'delivering');
+				}
+    		} else if (target = HiveMind.canDeliver(creep)){
     			if (creep.carry.energy > 0) {
     				HiveMind.updateState(creep, 'delivering');
     				HiveMind.setTarget(creep, target);
 				} else {
 					HiveMind.updateState(creep, 'gathering');
 				}
-			} else if (target = HiveMind.canScavenge(creep)) {
-				if (creep.carry.energy < creep.carryCapacity) {
-					HiveMind.updateState(creep, 'scavenging');
-					HiveMind.setTarget(creep, target);
-				} else {
-					HiveMind.updateState(creep, 'idle');
-				}
-    		} else {
+			} else {
     			creep.memory.idle = true;
     			HiveMind.updateState(creep, 'idle');
 				HiveMind.setTarget(creep, HiveMind.determineRallyPoint(creep));
