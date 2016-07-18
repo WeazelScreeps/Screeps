@@ -21,10 +21,20 @@ var roleUpgrader = {
 	_determineState: function(creep) {
 
 		if (creep.memory.gathering){
+	    	creep.memory.gathering){
 	    	if (creep.carry.energy < creep.carryCapacity) {
-	    		HiveMind.updateState(creep, 'gathering');
+	    		if (target = HiveMind.canScavenge(creep)){
+	    			HiveMind.updateState(creep, 'scavenging');
+	    			HiveMind.setTarget(creep, target);
+	    		} else {
+	    			HiveMind.updateState(creep, 'gathering');
+	    		}
 	    	} else {
-    			HiveMind.updateState(creep, 'upgrading');
+    			creep.memory.gathering = false;
+    			if (target = HiveMind.canDeliver(creep)){
+    				HiveMind.updateState(creep, 'upgrading');
+    				HiveMind.setTarget(creep, target);
+    			}
     		}
 
     	} else {
