@@ -31,6 +31,10 @@ var roleHarvester = {
 	    		HiveMind.updateState(creep, 'gathering');
 	    	} else {
     			creep.memory.gathering = false;
+    			if (target = HiveMind.canDeliver(creep)){
+    				HiveMind.updateState(creep, 'delivering');
+    				HiveMind.setTarget(creep, target);
+    			}
     		}
 
     	} else {
