@@ -41,16 +41,15 @@ var roleHarvester = {
     				HiveMind.setTarget(creep, target);
     			}
     		}
-
-    	} else {
-    		if (target = HiveMind.canScavenge(creep)) {
+    	else if (target = HiveMind.canScavenge(creep)) {
 				if (creep.carry.energy < creep.carryCapacity) {
 					HiveMind.updateState(creep, 'scavenging');
 					HiveMind.setTarget(creep, target);
 				} else {
 					HiveMind.updateState(creep, 'delivering');
 				}
-    		} else if (target = HiveMind.canDeliver(creep)){
+    	} else {
+    		if (target = HiveMind.canDeliver(creep)){
     			if (creep.carry.energy > 0) {
     				HiveMind.updateState(creep, 'delivering');
     				HiveMind.setTarget(creep, target);
