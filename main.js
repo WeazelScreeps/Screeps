@@ -10,5 +10,7 @@ module.exports.loop = function () {
     roleHandler.delegate();
 
     creepResupply.manage(roomEnergy.getCurrent());
+
+    towerHandler.run();
     
 }
