@@ -8,12 +8,12 @@ var towerHandler = {
         if(closestHostile) {
             tower.attack(closestHostile);
         }
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if(!closestHostile && closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
+        // var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        //     filter: (structure) => structure.hits < structure.hitsMax
+        // });
+        // if(!closestHostile && closestDamagedStructure) {
+        //     tower.repair(closestDamagedStructure);
+        // }
 
 	}	
 
