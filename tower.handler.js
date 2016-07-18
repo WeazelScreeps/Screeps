@@ -3,7 +3,7 @@ var towerHandler = {
 	run: function() {
 
 		var towers = [
-			Game.getObjectById('578c3de0e949c1f60f168221');
+			Game.getObjectById('578c3de0e949c1f60f168221')
 		];
 
 		for(var tower in towers){
