@@ -21,7 +21,6 @@ var roleUpgrader = {
 	_determineState: function(creep) {
 
 		if (creep.memory.gathering){
-	    	creep.memory.gathering){
 	    	if (creep.carry.energy < creep.carryCapacity) {
 	    		if (target = HiveMind.canScavenge(creep)){
 	    			HiveMind.updateState(creep, 'scavenging');
