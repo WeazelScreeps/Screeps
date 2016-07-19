@@ -109,7 +109,7 @@ var hiveMind = {
 	},
 
 	canRepair: function (creep) {
-		var repairable = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+		var repairable = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
             	return (structure.hits < structure.maxHits && structure.hits < 100000)
             }
