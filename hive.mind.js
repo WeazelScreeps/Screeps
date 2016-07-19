@@ -110,7 +110,9 @@ var hiveMind = {
 
 	canRepair: function (creep) {
 		var repairable = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => (structure.hits < structure.maxHits && structure.hits < 100000)
+            filter: (structure) => {
+            	return (structure.hits < structure.maxHits && structure.hits < 100000)
+            }
         });
 
         return repairable;
