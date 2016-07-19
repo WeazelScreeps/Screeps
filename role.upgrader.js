@@ -32,7 +32,6 @@ var roleUpgrader = {
 	    			HiveMind.updateState(creep, 'gathering');
 	    		}
 	    	} else {
-    			creep.memory.gathering = false;
     			if (target = HiveMind.canDeliver(creep)){
     				HiveMind.updateState(creep, 'upgrading');
     				HiveMind.setTarget(creep, target);
@@ -47,7 +46,7 @@ var roleUpgrader = {
 					HiveMind.updateState(creep, 'upgrading');
 				}
 			} else {
-				HiveMind.updateState(creep, 'upgrading');
+				HiveMind.updateState(creep, 'gathering');
 			}
     	} else {
 			if (creep.carry.energy > 0) {
