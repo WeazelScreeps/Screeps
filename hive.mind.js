@@ -115,7 +115,7 @@ var hiveMind = {
             }
         });
 
-        return repairable;
+        return repairable[0];
 	},
 
 	canDeliver: function(creep) {
