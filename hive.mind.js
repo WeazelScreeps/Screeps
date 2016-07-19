@@ -109,13 +109,16 @@ var hiveMind = {
 	},
 
 	canRepair: function (creep) {
-		var repairable = creep.room.find(FIND_STRUCTURES, {
+		var targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
-            	return (structure.hits < structure.maxHits && structure.hits < 100000)
+            	return (structure.hits < structure.maxHits) && structure.hits < 100000;
             }
         });
 
-        return repairable[0];
+        if(targets.length > 0) {
+        	return targets[0];
+        }
+        return false;
 	},
 
 	canDeliver: function(creep) {
