@@ -111,7 +111,7 @@ var hiveMind = {
 	canRepair: function (creep) {
 		var targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
-            	return (structure.hits < structure.hitsMax) && structure.hits < 100000;
+            	return (structure.hits < structure.hitsMax) && structure.hits < 100000 && structure.structureType == STRUCTURE_WALL;
             }
         });
 
