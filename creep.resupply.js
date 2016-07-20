@@ -45,8 +45,8 @@ var creepResupply = {
     _manageHarvesterLevels: function() {
         
         var desiredUnits = {
-            groupOne: 4,
-            groupTwo: 5
+            groupOne: 3,
+            groupTwo: 4
         };
         var groupOneFilled = false;
         var groupTwoFilled = false;
@@ -81,8 +81,8 @@ var creepResupply = {
     _manageUpgraderLevels: function() {
 
         var desiredUnits = {
-            groupOne: 0,
-            groupTwo: 0
+            groupOne: 1,
+            groupTwo: 1
         };
         var groupOneFilled = false;
         var groupTwoFilled = false;
@@ -116,8 +116,8 @@ var creepResupply = {
     _manageBuilderLevels: function() {
         
         var desiredUnits = {
-            groupOne: 0,
-            groupTwo: 0
+            groupOne: 3,
+            groupTwo: 3
         };
         var groupOneFilled = false;
         var groupTwoFilled = false;
