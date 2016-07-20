@@ -11,9 +11,6 @@ var roleUpgrader = {
 	      case 'gathering':
 	          HiveMind.gatherEnergy(creep);
 	          break;
-	      case 'scavenging':	
-          	  HiveMind.scavenge(creep, creep.memory.target);
-          	  break;
           case 'upgrading':
               HiveMind.upgradeController(creep);
               break;
@@ -25,29 +22,13 @@ var roleUpgrader = {
 
 		if (creep.memory.gathering){
 	    	if (creep.carry.energy < creep.carryCapacity) {
-	    		if (target = HiveMind.canScavenge(creep)){
-	    			HiveMind.updateState(creep, 'scavenging');
-	    			HiveMind.setTarget(creep, target);
-	    		} else {
-	    			HiveMind.updateState(creep, 'gathering');
-	    		}
+	    		HiveMind.updateState(creep, 'gathering');
 	    	} else {
     			if (target = HiveMind.canDeliver(creep)){
     				HiveMind.updateState(creep, 'upgrading');
     				HiveMind.setTarget(creep, target);
     			}
     		}
-    	} else if (creep.memory.scavenging) {
-    		if (target = HiveMind.canScavenge(creep)) {
-				if (creep.carry.energy < creep.carryCapacity) {
-					HiveMind.updateState(creep, 'scavenging');
-					HiveMind.setTarget(creep, target);
-				} else {
-					HiveMind.updateState(creep, 'upgrading');
-				}
-			} else {
-				HiveMind.updateState(creep, 'gathering');
-			}
     	} else {
 			if (creep.carry.energy > 0) {
 				HiveMind.updateState(creep, 'upgrading');
