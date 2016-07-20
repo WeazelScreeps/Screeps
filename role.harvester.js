@@ -15,7 +15,8 @@ var roleHarvester = {
               HiveMind.deliverEnergy(creep, creep.memory.target);
               break;
           case 'scavenging':
-          	  HiveMind.scavenge(creep, creep.memory.target);
+          	  HiveMind.gatherEnergy(creep);
+          	  //HiveMind.scavenge(creep, creep.memory.target);
       	  case 'idle':
       	  	  HiveMind.upgradeController(creep);
       	  	  break;
