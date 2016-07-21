@@ -1,8 +1,6 @@
 var towerHandler = {
 
-	run: function() {
-
-		var tower = Game.getObjectById('578c3de0e949c1f60f168221');
+	run: function(tower) {
 
 		var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {

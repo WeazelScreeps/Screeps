@@ -11,6 +11,9 @@ module.exports.loop = function () {
 
     creepResupply.manage(roomEnergy.getCurrent());
 
-    towerHandler.run();
+	var tower1 = Game.getObjectById('578c3de0e949c1f60f168221');
+	var tower2 = Game.getObjectById('57901a17cf166c723f8beee2');
+    towerHandler.run(tower1);
+    towerHandler.run(tower2);
     
 }
