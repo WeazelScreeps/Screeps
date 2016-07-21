@@ -144,6 +144,17 @@ var hiveMind = {
         	return nodes[0];
         }
 
+        var storage = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                	return (structure.structureType == STRUCTURE_STORAGE) &&
+                        structure.energy < structure.energyCapacity;
+                }
+        });
+        
+        if(storage.length > 0) {
+        	return storage[0];
+        }
+
         
         return false;
 	},
