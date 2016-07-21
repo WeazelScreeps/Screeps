@@ -46,7 +46,7 @@ var creepResupply = {
         
         var desiredUnits = {
             groupOne: 3,
-            groupTwo: 4
+            groupTwo: 3
         };
         var groupOneFilled = false;
         var groupTwoFilled = false;
