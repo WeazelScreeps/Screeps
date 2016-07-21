@@ -135,7 +135,7 @@ var hiveMind = {
 
         var nodes = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                	return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
+                	return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
                         structure.energy < structure.energyCapacity;
                 }
         });
