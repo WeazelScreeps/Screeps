@@ -122,16 +122,29 @@ var hiveMind = {
 	},
 
 	canDeliver: function(creep) {
-		var targets = creep.room.find(FIND_STRUCTURES, {
+		var towers = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                	return (structure.structureType == STRUCTURE_TOWER) &&
+                        structure.energy < structure.energyCapacity;
+                }
+        });
+        
+        if(towers.length > 0) {
+        	return towers[0];
+        }
+
+        var nodes = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                 	return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
                         structure.energy < structure.energyCapacity;
                 }
         });
         
-        if(targets.length > 0) {
-        	return targets[0];
+        if(nodes.length > 0) {
+        	return nodes[0];
         }
+
+        
         return false;
 	},
 
